@@ -72,7 +72,11 @@ module Exercises
   #    { :name => 'Bob', :occupation => 'Builder' }
   #    Iterate through `people` and print out their name and occupation.
   def self.ex8(people)
-    # TODO
+    people.each do |hash|
+      array = []
+      hash.each{|key, value| array << value }
+      puts "#{array[0]}, #{array[1]}"
+    end
   end
 
   # Exercise 9
@@ -80,7 +84,7 @@ module Exercises
   #    Otherwise, returns `false`
   # Hint: Google for the wikipedia article on leap years
   def self.ex9(time)
-    # TODO
+    Date.new(time).leap?
   end
 end
 

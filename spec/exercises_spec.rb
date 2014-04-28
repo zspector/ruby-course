@@ -68,4 +68,26 @@ describe 'Exercises' do
       expect(Exercises.ex7([1,'str',3], 'str')).to eq([1,'str',3,'str'])
     end
   end
+
+  describe '.ex8' do
+    it "prints person's name and occupation" do
+      STDOUT.should_receive(:puts).with("Bob, Builder")
+      STDOUT.should_receive(:puts).with("John, Accountant")
+      STDOUT.should_receive(:puts).with("Eve, Programmer")
+
+      people = [{:name => 'Bob', :occupation => 'Builder'},
+        {:name => 'John', :occupation => 'Accountant'},
+        {:name => 'Eve', :occupation => 'Programmer'} ]
+
+      Exercises.ex8(people)
+    end
+  end
+
+  describe '.ex9' do
+    it "returns true for leap year or false for regular year" do
+      time = Time.new.year
+      expect(Exercises.ex9(time)).to eq(false)
+      expect(Exercises.ex9(2000)).to eq(true)
+    end
+  end
 end
