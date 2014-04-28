@@ -55,5 +55,10 @@ describe 'Exercises' do
     end
   end
 
-  describe '.ex6'
+  describe '.ex6' do
+    it "updates the last item in the array to 'panda'" do
+      expect(Exercises.ex6([1,2,3])).to eq([1,2,'panda'])
+      expect(Exercises.ex6([1,2,'panda'])).to eq([1,2,'GODZILLA'])
+    end
+  end
 end
