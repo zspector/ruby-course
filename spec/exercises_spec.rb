@@ -15,5 +15,10 @@ describe 'Exercises' do
     end
   end
 
-
+  describe '.ex1' do
+    it "returns the number of elements in the array" do
+      expect(Exercises.ex1([])).to eq(0)
+      expect(Exercises.ex1([1,2,3])).to eq(3)
+    end
+  end
 end
