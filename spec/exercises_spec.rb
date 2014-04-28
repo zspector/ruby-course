@@ -61,4 +61,11 @@ describe 'Exercises' do
       expect(Exercises.ex6([1,2,'panda'])).to eq([1,2,'GODZILLA'])
     end
   end
+
+  describe '.ex7' do
+    it "if the string 'str' exists in the array, it adds 'str' to end of array" do
+      expect(Exercises.ex7([1,2,3], 'str')).to eq([1,2,3])
+      expect(Exercises.ex7([1,'str',3], 'str')).to eq([1,'str',3,'str'])
+    end
+  end
 end
