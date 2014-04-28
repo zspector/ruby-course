@@ -42,4 +42,18 @@ describe 'Exercises' do
       expect(Exercises.ex4([1,54, 78, 4])).to eq(78)
     end
   end
+
+  describe '.ex5' do
+    it "iterates through an array and 'puts' each element" do
+
+      STDOUT.should_receive(:puts).with(1)
+      STDOUT.should_receive(:puts).with(2)
+      STDOUT.should_receive(:puts).with(3)
+      STDOUT.should_receive(:puts).with(4)
+      result = [1, 2, 3, 4]
+      Exercises.ex5(result)
+    end
+  end
+
+  describe '.ex6'
 end
