@@ -21,4 +21,19 @@ describe 'Exercises' do
       expect(Exercises.ex1([1,2,3])).to eq(3)
     end
   end
+
+  describe '.ex2' do
+    it "returns the second element of an array" do
+      expect(Exercises.ex2([])).to eq(nil)
+      expect(Exercises.ex2([1,2])).to eq(2)
+      expect(Exercises.ex2([1,5,8,9,0])).to eq(5)
+    end
+  end
+
+  describe '.ex3' do
+    it "returns the sum of a given array of numbers" do
+      expect(Exercises.ex3([])).to eq (nil)
+      expect(Exercises.ex3([1,2,3,4])).to eq (10)
+    end
+  end
 end
