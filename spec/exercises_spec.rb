@@ -91,3 +91,12 @@ describe 'Exercises' do
     end
   end
 end
+
+describe 'RPS' do
+  describe '.initialize' do
+    game = RPS.new(player1, player2)
+
+    expect(game.player1).to eq("Jim")
+    expect(game.player2).to eq("Bob")
+  end
+end

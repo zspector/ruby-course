@@ -102,6 +102,37 @@ class RPS
   #
   # You will be using this class in the following class, which will let players play
   # RPS through the terminal.
+  attr_accessor :player1, :player2
+
+  def initialize(player1, player2)
+    @player1 = RPSPlayer.new
+    @player2 = RPSPlayer.new
+    @player1_wins = 0
+    @player2_wins = 0
+  end
+
+  def play
+    @player1.start
+    @player2.start
+    move1 = @player1.move
+    move2 = @player2.move
+
+
+    if move1 == 'rock' && move2 == 'rock' || move1 == 'paper' && move2 == 'paper' || move1 == 'scissors' && move2 == 'scissors'
+      puts "#{player1.name} chose #{player1.move}!"
+      puts "#{player2.name} chose #{player2.move}!"
+      "It's a tie!"
+    elsif move1 == 'rock' && move2 == 'scissors' || move1 == 'paper' && move2 == 'rock' || move1 == 'scissors' && move2 == 'paper'
+      puts "#{player1.name} chose #{player1.move}!"
+      puts "#{player2.name} chose #{player2.move}!"
+      "#{player1.name} wins!"
+    else
+      puts "#{player1.name} chose #{player1.move}!"
+      puts "#{player2.name} chose #{player2.move}!"
+      "#{player2.name} wins!"
+    end
+  end
+
 end
 
 
@@ -117,9 +148,23 @@ class RPSPlayer
   # lets both players play the game.
   #
   # When the game ends, ask if the player wants to play again.
-  def start
+  attr_accessor :name, :move
 
-    # TODO
+  def initialize
+    @name
+    @move
+  end
+
+  def start
+    puts "What is your name? "
+    @name = STDIN.noecho(&:gets).chomp
+    puts "Hello, #{@name}! Choose rock, paper, or scissors. "
+    @move = STDIN.noecho(&:gets).chomp
+    @move.downcase!
+    if @move != 'rock' && @move != 'paper' && @move != 'scissors'
+      puts "#{@name}, you must choose rock, paper or scissors"
+      @move=STDIN.noecho(&:gets).chomp
+    end
 
     # PRO TIP: Instead of using plain `gets` for grabbing a player's
     #          move, this line does the same thing but does NOT show
