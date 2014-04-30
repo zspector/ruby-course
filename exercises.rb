@@ -113,31 +113,6 @@ class RPS
     @player1.start
     @player2.start
 
-    # while @player1.wins < 2 && @player2.wins < 2
-    #   @player1.get_move
-    #   @player2.get_move
-    #   move1 = @player1.move
-    #   move2 = @player2.move
-    #   # binding.pry
-
-    #   if move1 == 'rock' && move2 == 'rock' || move1 == 'paper' && move2 == 'paper' || move1 == 'scissors' && move2 == 'scissors'
-    #     puts "#{player1.name} chose #{player1.move}!"
-    #     puts "#{player2.name} chose #{player2.move}!"
-    #     puts "It's a tie!"
-    #   elsif move1 == 'rock' && move2 == 'scissors' || move1 == 'paper' && move2 == 'rock' || move1 == 'scissors' && move2 == 'paper'
-    #     puts "#{player1.name} chose #{player1.move}!"
-    #     puts "#{player2.name} chose #{player2.move}!"
-    #     puts "#{player1.name} wins!"
-    #     player1.wins += 1
-    #     puts "#{player1.name}: #{player1.wins} wins, #{player2.name}: #{player2.wins}"
-    #   else
-    #     puts "#{player1.name} chose #{player1.move}!"
-    #     puts "#{player2.name} chose #{player2.move}!"
-    #     puts "#{player2.name} wins!"
-    #     player2.wins += 1
-    #     puts "#{player1.name}: #{player1.wins} wins, #{player2.name}: #{player2.wins}"
-    #   end
-    # end
     while player1.response == 'y' && player2.response == 'y'
       moves
 
@@ -224,6 +199,10 @@ class RPSPlayer
     @wins = 0
     puts "#{@name}, would you like to play again? y/n"
     @response = gets.chomp
+    if @response != 'y' && @response != 'n'
+      puts "Please respond with either 'y' or 'n' only"
+      @response = gets.chomp
+    end
   end
 
     # PRO TIP: Instead of using plain `gets` for grabbing a player's
