@@ -1,4 +1,4 @@
-
+require "pry-debugger"
 module Exercises
   # Exercise 0
   #  - Triples a given string `str`
@@ -104,33 +104,81 @@ class RPS
   # RPS through the terminal.
   attr_accessor :player1, :player2
 
-  def initialize(player1, player2)
+  def initialize
     @player1 = RPSPlayer.new
     @player2 = RPSPlayer.new
-    @player1_wins = 0
-    @player2_wins = 0
   end
 
   def play
     @player1.start
     @player2.start
-    move1 = @player1.move
-    move2 = @player2.move
 
+    # while @player1.wins < 2 && @player2.wins < 2
+    #   @player1.get_move
+    #   @player2.get_move
+    #   move1 = @player1.move
+    #   move2 = @player2.move
+    #   # binding.pry
 
-    if move1 == 'rock' && move2 == 'rock' || move1 == 'paper' && move2 == 'paper' || move1 == 'scissors' && move2 == 'scissors'
-      puts "#{player1.name} chose #{player1.move}!"
-      puts "#{player2.name} chose #{player2.move}!"
-      "It's a tie!"
-    elsif move1 == 'rock' && move2 == 'scissors' || move1 == 'paper' && move2 == 'rock' || move1 == 'scissors' && move2 == 'paper'
-      puts "#{player1.name} chose #{player1.move}!"
-      puts "#{player2.name} chose #{player2.move}!"
-      "#{player1.name} wins!"
-    else
-      puts "#{player1.name} chose #{player1.move}!"
-      puts "#{player2.name} chose #{player2.move}!"
-      "#{player2.name} wins!"
+    #   if move1 == 'rock' && move2 == 'rock' || move1 == 'paper' && move2 == 'paper' || move1 == 'scissors' && move2 == 'scissors'
+    #     puts "#{player1.name} chose #{player1.move}!"
+    #     puts "#{player2.name} chose #{player2.move}!"
+    #     puts "It's a tie!"
+    #   elsif move1 == 'rock' && move2 == 'scissors' || move1 == 'paper' && move2 == 'rock' || move1 == 'scissors' && move2 == 'paper'
+    #     puts "#{player1.name} chose #{player1.move}!"
+    #     puts "#{player2.name} chose #{player2.move}!"
+    #     puts "#{player1.name} wins!"
+    #     player1.wins += 1
+    #     puts "#{player1.name}: #{player1.wins} wins, #{player2.name}: #{player2.wins}"
+    #   else
+    #     puts "#{player1.name} chose #{player1.move}!"
+    #     puts "#{player2.name} chose #{player2.move}!"
+    #     puts "#{player2.name} wins!"
+    #     player2.wins += 1
+    #     puts "#{player1.name}: #{player1.wins} wins, #{player2.name}: #{player2.wins}"
+    #   end
+    # end
+    while player1.response == 'y' && player2.response == 'y'
+      moves
+
+      player1.restart
+      player2.restart
     end
+
+  end
+
+  def moves
+    while @player1.wins < 2 && @player2.wins < 2
+      @player1.get_move
+      @player2.get_move
+      move1 = @player1.move
+      move2 = @player2.move
+
+      if move1 == 'rock' && move2 == 'rock' || move1 == 'paper' && move2 == 'paper' || move1 == 'scissors' && move2 == 'scissors'
+        puts "#{player1.name} chose #{player1.move}!"
+        puts "#{player2.name} chose #{player2.move}!"
+        puts "It's a tie!"
+      elsif move1 == 'rock' && move2 == 'scissors' || move1 == 'paper' && move2 == 'rock' || move1 == 'scissors' && move2 == 'paper'
+        puts "#{player1.name} chose #{player1.move}!"
+        puts "#{player2.name} chose #{player2.move}!"
+        puts "#{player1.name} wins!"
+        player1.wins += 1
+        puts "#{player1.name}: #{player1.wins} wins, #{player2.name}: #{player2.wins}"
+      else
+        puts "#{player1.name} chose #{player1.move}!"
+        puts "#{player2.name} chose #{player2.move}!"
+        puts "#{player2.name} wins!"
+        player2.wins += 1
+        puts "#{player1.name}: #{player1.wins} wins, #{player2.name}: #{player2.wins}"
+      end
+
+      if @player1.wins == 2
+        puts "#{@player1.name} is the champion of battling with mundane objects!"
+      elsif @player2.wins == 2
+        puts "#{@player2.name} is the champion of battling with mundane objects!"
+      end
+    end
+
   end
 
 end
@@ -148,16 +196,21 @@ class RPSPlayer
   # lets both players play the game.
   #
   # When the game ends, ask if the player wants to play again.
-  attr_accessor :name, :move
+  attr_accessor :name, :move, :wins, :response
 
   def initialize
     @name
     @move
+    @wins = 0
+    @response = 'y'
   end
 
   def start
     puts "What is your name? "
-    @name = STDIN.noecho(&:gets).chomp
+    @name = gets.chomp
+  end
+
+  def get_move
     puts "Hello, #{@name}! Choose rock, paper, or scissors. "
     @move = STDIN.noecho(&:gets).chomp
     @move.downcase!
@@ -165,13 +218,19 @@ class RPSPlayer
       puts "#{@name}, you must choose rock, paper or scissors"
       @move=STDIN.noecho(&:gets).chomp
     end
+  end
+
+  def restart
+    @wins = 0
+    puts "#{@name}, would you like to play again? y/n"
+    @response = gets.chomp
+  end
 
     # PRO TIP: Instead of using plain `gets` for grabbing a player's
     #          move, this line does the same thing but does NOT show
     #          what the player is typing! :D
     # This is also why we needed to require 'io/console'
     # move = STDIN.noecho(&:gets)
-  end
 end
 
 
