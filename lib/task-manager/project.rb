@@ -48,6 +48,6 @@ class TM::Project
   def todo
     @incomplete_tasks = []
     @incomplete_tasks = @tasks.select {|task| task.completed == false}
-    @incomplete_tasks.sort_by! {|task| [task.priority, task.time]}
+    @incomplete_tasks.sort_by! {|task| [ task.priority, task.time]}
   end
 end

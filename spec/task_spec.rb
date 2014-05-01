@@ -46,4 +46,31 @@ describe 'Task' do
       expect(@t2.completed).to eq(false)
     end
   end
+
+  describe '.due_date' do
+    it "sets the due date for a task" do
+      @t1.due_date(2015, 1, 1)
+
+      expect(@t1.due).to eq(Time.new(2015,1,1))
+    end
+  end
+
+  describe '.overdue' do
+    it "automatically sets task as overdue after due_date" do
+      @t1.due_date(2013, 1, 1)
+      # @t1.overdue?
+
+      expect(@t1.overdue).to eq(true)
+      expect(@t1.overdue?).to eq(true)
+    end
+
+    it "does not set as overdue if task is complete" do
+      @t1.due_date(2013,1,1)
+      @t1.set_complete
+
+      expect(@t1.completed).to eq(true)
+      expect(@t1.overdue).to eq(false)
+      expect(@t1.overdue?).to eq(false)
+    end
+  end
 end

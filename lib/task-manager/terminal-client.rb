@@ -14,7 +14,7 @@ class TM::TerminalClient
   end
 
   def list_commands
-    puts "Welcome to Project Manager Pro. What can I do for you today?"
+    puts "Welcome to Project Manager Pro\u00A9. What can I do for you today?"
     puts ""
     puts "Available Commands:"
     puts "\t help - Show these commands again"
